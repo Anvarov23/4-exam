@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,600;1,8..144,200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Exam</title>
+</head>
+<body> 
+    <main>
+        <div class="container">
+            <ul class="js-users">
+            <img src="/img/spinner.svg" alt="">
+            </ul>
+            <ul class="js-posts">
+            </ul>
+            <ul class="js-comments">
+            </ul>
+        </div>
+    </main>
+
+    <template class="user__template">
+        <li class="user__item">
+            <div class="item__top">
+                <div>
+                    <h2 class="item__username"></h2>  
+                    <h1 class="item__name"></h2>
+                </div>
+                <span class="item__id"></span>
+            </div>
+            <div class="adress__box">
+                <p class="item__street"></p>
+                <p class="item__suite"></p>
+                <p class="item__city"></p>
+                <p class="item__zipcode"></p>
+            </div>
+            <div class="main__box">
+                <div class="company__box">
+                    <h3 class="item__company-name"></h3>
+                    <p class="item__catch-phrase"></p>
+                    <p class="item__comment"></p>
+                    <a href="" target="_blank" class="item__phone"></a>
+                </div>  
+                <div class="links__box">
+                    <a img href="" target="_blank" class="item__email"></a>
+                    <a href="" target="_blank" class="item__website"></a>
+                    <a href="" target="_blank" class="item__location"></a>
+                </div>
+            </div>
+        </li>
+    </template>
+
+    <template class="posts__template"> 
+        <li class="posts">
+            <h3 class="post__title"></h3>
+            <p class="post__text"></p>
+        </li>
+    </template>
+
+    <template class="comments__template"> 
+        <li class="comments">
+            <h3 class="comments__title"></h3>
+            <a href="" class="comments__email"></a>
+            <p class="comments__text"></p>
+        </li>
+    </template>
+    <script src="./js/main.js"></script>
+</body>
+</html>
