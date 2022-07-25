@@ -69,10 +69,6 @@ async function getPost() {
   renderPosts(dataPost, elPostList);
 }
 
-// getPost();
-
-
-
 const CommentsFragment = document.createDocumentFragment();
 const renderComments = (array, node) => {
   array?.forEach((elComments) => {
@@ -91,10 +87,6 @@ async function getComment() {
   const dataComments = await response.json();
   renderComments(dataComments, elCommentsList);
 }
-
-// getComment();
-
-
 
 elList.addEventListener("click", (evt) => {
   elCommentsList.innerHtml = "";
@@ -119,27 +111,3 @@ elPostList.addEventListener("click", (evt) => {
     })
   }
 });
-
-// elList.addEventListener("click", (evt) =>{
-//   if (evt.target.matches(".user__item")) {
-//     let IdUser = evt.target.dataset.userId;
-//     async function getPost(){
-//       const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId`)
-//       const data = await response.json();
-//       function renderPosts(arr, element){
-//         element.innerHtml = "";
-//         arr.forEach(e => {
-//           if(IdUser == e.userId) {
-//             const clonedTeamplate = elPostTemplate.cloneNode(true);
-//             clonedTeamplate.querySelector(".post_id").dataset.postId = e.id;
-//             clonedTeamplate.querySelector(".post_title").textContent = e.title;
-//             clonedTeamplate.querySelector(".post_text").textContent = e.body;
-//             element.appendChild(clonedTeamplate);
-//           }
-//         })
-//       }
-//       renderPosts(data, elPostList);
-//     }
-//     getPost();
-//   }
-// });
