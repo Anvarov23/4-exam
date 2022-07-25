@@ -17,6 +17,7 @@ const renderUsers = (array, node) => {
     const newTemplate = elTemplate.cloneNode(true);
     newTemplate.querySelector(".item__name").textContent = el.name;
     newTemplate.querySelector(".item__id").textContent = el.id;
+    newTemplate.querySelector(".user__item").dataset.id = el.id;
     newTemplate.querySelector(".item__email").href = `mailto:${el.email}`;
     newTemplate.querySelector(".item__email").textContent = el.email;
     newTemplate.querySelector(".item__username").textContent = el.username;
@@ -55,6 +56,7 @@ const renderPosts = (array, node) => {
     elPostId.push(elPost.id)
     const newPostTemplate = elPostTemplate.cloneNode(true);
     newPostTemplate.querySelector(".post__title").textContent = elPost.title;
+    newPostTemplate.querySelector(".posts").dataset.id = elPost.id;
     newPostTemplate.querySelector(".post__text").textContent = elPost.body;
     PostFragment.appendChild(newPostTemplate);
   });
@@ -67,7 +69,7 @@ async function getPost() {
   renderPosts(dataPost, elPostList);
 }
 
-getPost();
+// getPost();
 
 
 
@@ -90,21 +92,33 @@ async function getComment() {
   renderComments(dataComments, elCommentsList);
 }
 
-getComment();
+// getComment();
 
 
 
-// elList.addEventListener("click", (evt) => {
-//   elCommentsList.innerHtml = "";
-//   if(evt.target.matches(".user__item")){
-//     const UserIdMain = evt.target.dataset.id - 0;
-//     elUserId.forEach(e => {
-//       if(UserIdMain === e){
-//         getPost(e)
-//       }
-//     })
-//   }
-// })
+elList.addEventListener("click", (evt) => {
+  elCommentsList.innerHtml = "";
+  if(evt.target.matches(".user__item")){
+    const UserIdMain = evt.target.dataset.id - 0;
+    elUserId.forEach(userId => {
+      if(UserIdMain === userId){
+        getPost(userId)
+      }
+    })
+  }
+});
+
+elPostList.addEventListener("click", (evt) => {
+  elCommentsList.innerHtml = "";
+  if(evt.target.matches(".posts")){
+    const PostIdMain = evt.target.dataset.id - 0;
+    elUserId.forEach(postId => {
+      if(PostIdMain === postId){
+        getComment(postId)
+      }
+    })
+  }
+});
 
 // elList.addEventListener("click", (evt) =>{
 //   if (evt.target.matches(".user__item")) {
