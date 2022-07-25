@@ -7,11 +7,12 @@ const elCommentsTemplate = document.querySelector(" .comments__template").conten
 const elItem = document.querySelector(".user__item");
 const elUserId = [];
 const elPostId = [];
+console.log(elPostId);
 
 
 const userFragment = document.createDocumentFragment();
 const renderUsers = (array, node) => {
-  elList.innerHTML = "";
+  node.innerHTML = "";
   array?.forEach((el) => {
     elUserId.push(el.id)
     const newTemplate = elTemplate.cloneNode(true);
@@ -51,7 +52,7 @@ getUser();
 
 const PostFragment = document.createDocumentFragment();
 const renderPosts = (array, node) => {
-  node.innerHtml = "";
+  node.innerHTML = "";
   array?.forEach((elPost) => {
     elPostId.push(elPost.id)
     const newPostTemplate = elPostTemplate.cloneNode(true);
@@ -63,14 +64,15 @@ const renderPosts = (array, node) => {
   node.appendChild(PostFragment);
 };
 
-async function getPost() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+async function getPost(id) {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
   const dataPost = await response.json();
   renderPosts(dataPost, elPostList);
 }
 
 const CommentsFragment = document.createDocumentFragment();
 const renderComments = (array, node) => {
+  node.innerHTML =""
   array?.forEach((elComments) => {
     const newCommentsTemplate = elCommentsTemplate.cloneNode(true);
     newCommentsTemplate.querySelector(".comments__title").textContent = elComments.name;
@@ -82,14 +84,14 @@ const renderComments = (array, node) => {
   node.appendChild(CommentsFragment);
 };
 
-async function getComment() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/Comments");
+async function getComment(posttId) {
+  const response = await fetch(`https://jsonplaceholder.typicode.com/Comments?postId=${posttId}`);
   const dataComments = await response.json();
   renderComments(dataComments, elCommentsList);
 }
 
 elList.addEventListener("click", (evt) => {
-  elCommentsList.innerHtml = "";
+  elPostList.innerHTML = "";
   if(evt.target.matches(".user__item")){
     const UserIdMain = evt.target.dataset.id - 0;
     elUserId.forEach(userId => {
@@ -101,10 +103,10 @@ elList.addEventListener("click", (evt) => {
 });
 
 elPostList.addEventListener("click", (evt) => {
-  elCommentsList.innerHtml = "";
+  elCommentsList.innerHTML = "";
   if(evt.target.matches(".posts")){
     const PostIdMain = evt.target.dataset.id - 0;
-    elUserId.forEach(postId => {
+    elPostId.forEach(postId => {
       if(PostIdMain === postId){
         getComment(postId)
       }
